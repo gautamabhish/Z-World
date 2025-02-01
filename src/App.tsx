@@ -3,7 +3,7 @@ import './App.css'
 import { useState } from 'react';
 import CharacterCustomization from './components/CharPreview';
 import { BrowserRouter, Routes ,Route } from 'react-router-dom';
-import World from './components/World';
+import {Render} from "./components/Render"
 function App() {
 
 
@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<CharacterCustomization/>}></Route>
-      <Route path="/world" element={<World/>}></Route>
+      <Route path="/world" element={<Render/>}></Route>
     </Routes>
     </BrowserRouter>
    
@@ -20,4 +20,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
