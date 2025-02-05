@@ -13,7 +13,7 @@ const normalizeAngle = (angle) => {
   while (angle < -Math.PI) angle += 2 * Math.PI;
   return angle;
 };
-let positioner = true ;
+
 const lerpAngle = (start, end, t) => {
   start = normalizeAngle(start);
   end = normalizeAngle(end);
@@ -30,20 +30,15 @@ const lerpAngle = (start, end, t) => {
 };
 
 export const CharacterController = () => {
-  const  WALK_SPEED = 4;const RUN_SPEED = 2; const ROTATION_SPEED = 0.005;
+  const  WALK_SPEED=3, RUN_SPEED=5, ROTATION_SPEED =0.01
+    
   const rb = useRef();
   const container = useRef();
   const character = useRef();
 
   const [animation, setAnimation] = useState("idle");
-  
-  useEffect(() => {
-    if (character.current) {
-      character.current.position.set(1, 0, 0);
-    }
-  }, []);
 
-     const characterRotationTarget = useRef(0);
+  const characterRotationTarget = useRef(0);
   const rotationTarget = useRef(0);
   const cameraTarget = useRef();
   const cameraPosition = useRef();
@@ -51,7 +46,6 @@ export const CharacterController = () => {
   const cameraLookAtWorldPosition = useRef(new Vector3());
   const cameraLookAt = useRef(new Vector3());
   const [, get] = useKeyboardControls();
- 
   const isClicking = useRef(false);
 
   useEffect(() => {
@@ -76,8 +70,8 @@ export const CharacterController = () => {
 
   useFrame(({ camera, mouse }) => {
     if (rb.current) {
+      
       const vel = rb.current.linvel();
-        
       const movement = {
         x: 0,
         z: 0,
@@ -89,29 +83,31 @@ export const CharacterController = () => {
       if (get().backward) {
         movement.z = -1;
       }
-
+   
       let speed = get().run ? RUN_SPEED : WALK_SPEED;
 
       if (isClicking.current) {
         console.log("clicking", mouse.x, mouse.y);
-        if (Math.abs(mouse.x) > 0.5) {
+        if (Math.abs(mouse.x) > 0.1) {
           movement.x = -mouse.x;
         }
-        movement.z = mouse.y ;
+        movement.z = mouse.y + 0.4;
         if (Math.abs(movement.x) > 0.5 || Math.abs(movement.z) > 0.5) {
           speed = RUN_SPEED;
         }
       }
-
+      console.log(get())
       if (get().left) {
-        movement.x = 5;
+        movement.x = 1;
       }
       if (get().right) {
         movement.x = -1;
       }
-  
-  
-
+      if (get().jump) {
+        
+        rb.current.applyImpulse({ x: vel.x, y: 5, z: vel.z }, true);
+      }
+      
       
       if (movement.x !== 0) {
         rotationTarget.current += ROTATION_SPEED * movement.x;
@@ -122,27 +118,28 @@ export const CharacterController = () => {
         vel.x =
           Math.sin(rotationTarget.current + characterRotationTarget.current) *
           speed;
+          console.log(vel)
         vel.z =
           Math.cos(rotationTarget.current + characterRotationTarget.current) *
           speed;
-        if (speed === RUN_SPEED) {
-          setAnimation("run");
+        // if (speed === RUN_SPEED) {
+          // setAnimation("run");
+          
         } else {
-          setAnimation("walk");
-        }
-      } else {
-        vel.x = 0 ; 
-        // vel.y = 0 ; 
-        vel.z = 0 ;
-        setAnimation("idle");
-      }
+          // setAnimation("walk");
+          
+        // }
+      } 
+      // else {
+      //   setAnimation("idle");
+      // }
       character.current.rotation.y = lerpAngle(
         character.current.rotation.y,
         characterRotationTarget.current,
         0.1
       );
-
       rb.current.setLinvel(vel, true);
+    
     }
 
     // CAMERA
@@ -164,15 +161,21 @@ export const CharacterController = () => {
   });
 
   return (
-    <RigidBody colliders={"hull"} type="dynamic"  lockRotations ref={rb}>
+    <RigidBody 
+    type="dynamic"
+     colliders="hull" 
+    lockRotations
+    linearDamping={0.5}
+    mass={50}
+     ref={rb}>
       <group ref={container}>
-        <group ref={cameraTarget} position-z={5} />
-        <group ref={cameraPosition} position-y={1} position-z={-5} />
-        <group ref={character}>
-          <Character scale={0.18} position-y={-0.25} animation={animation} />
+        <group ref={cameraTarget} position-z={1.5} />
+        <group ref={cameraPosition} position-y={3} position-z={-8} />
+        <group ref={character} position-y={1} position-x={1}>
+          <Character scale={1}  animation={animation} />
         </group>
       </group>
-      {/* <CapsuleCollider args={[0.08, 0.15]} /> */}
+      {/* <CapsuleCollider args={[0.3, 0.2]} /> */}
     </RigidBody>
   );
-};
+}; 

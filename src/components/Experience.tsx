@@ -20,6 +20,7 @@ export const Experience = () => {
         intensity={0.65}
         castShadow
         position={[-15, 10, 15]}
+        friction={0.3}
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
         shadow-bias={-0.00005}
@@ -33,11 +34,11 @@ export const Experience = () => {
           attach={"shadow-camera"}
         />
       </directionalLight>
-      <Physics gravity={[0, -9.81, 0]}>
+      <Physics gravity={[0,-9.8,0]} >
       {/* <Debug /> */}
-      <RigidBody type="fixed">
+ 
           <Map model={"/world/city2.glb"}></Map>
-         </RigidBody>
+     
         <CharacterController />
       </Physics>
     </>
