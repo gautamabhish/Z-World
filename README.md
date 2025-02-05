@@ -28,7 +28,7 @@ Anyone can help make **Z World** better! Here's how:
 
 ### 1️⃣ Clone the Repository
 ```sh
- git clone [https://github.com/yourusername/z-world.git](https://github.com/gautamabhish/meta-date-frontend.git (fetch))
+ git clone https://github.com/gautamabhish/meta-date-frontend.git (fetch)
  cd z-world
 ```
 
