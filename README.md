@@ -54,8 +54,10 @@ Anyone can help make **Z World** better! Here's how:
 This project thrives on community contributions! Whether you're a developer, artist, or designer, your input is valuable. Join us in building **Z World**! 🚀
 
 
+🙌 Special Thanks to All Contributors!
+A huge shoutout to **Kenney Characters**, **Wawa Sensei**, **Alexander Kovalev**, and **Svitlana Prylepska**, as well as everyone whose work has contributed to this project.
 
-🙌 Special thanks to all contributors specially kenney characters and **Alexander Kovalev** and **Svitlana Prylepska** !.
+I acknowledge that some materials used may not have credited their original authors. If you are the creator or have any concerns, please feel free to contact me, and I’ll be happy to address any issues!
 
 
 
