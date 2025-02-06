@@ -53,7 +53,10 @@ Anyone can help make **Z World** better! Here's how:
 ## 🎨 Contributors & Credits
 This project thrives on community contributions! Whether you're a developer, artist, or designer, your input is valuable. Join us in building **Z World**! 🚀
 
-🙌 Special thanks to all contributors! View the full list [here](https://github.com/yourusername/z-world/contributors).
+
+
+🙌 Special thanks to all contributors specially kenney characters and **Alexander Kovalev** and **Svitlana Prylepska** !.
+
 
 
 
