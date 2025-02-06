@@ -123,8 +123,9 @@ export const CharacterController = () => {
         vel.z =
           Math.cos(rotationTarget.current + characterRotationTarget.current) *
           speed;
+
         if (speed === RUN_SPEED) {
-          setAnimation("run");
+          setAnimation("sprint");
           
         } else {
           setAnimation("walk");
@@ -140,7 +141,7 @@ export const CharacterController = () => {
         0.1
       );
       rb.current.setLinvel(vel, true);
-
+      console.log(animation)
     
     }
 
