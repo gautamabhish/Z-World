@@ -34,7 +34,7 @@ export const Experience = () => {
           attach={"shadow-camera"}
         />
       </directionalLight>
-      <Physics gravity={[0,-9.8,0]} >
+      <Physics gravity={[0,-9.8,0]} timeStep={1/350}  >
       {/* <Debug /> */}
  
           <Map model={"/world/city2.glb"}></Map>

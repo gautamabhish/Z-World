@@ -10,10 +10,9 @@ export const Map = ({ model }) => {
   return (
     <group> <RigidBody  
       colliders="trimesh"
-      friction={0.8}
-      
+    
       type="fixed">
-      <primitive object={scene}  ref={group} position={[-1.5,0,0]} />
+      <primitive object={scene}  ref={group}  />
     </RigidBody>
     </group>
    

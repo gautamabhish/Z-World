@@ -87,7 +87,7 @@ export const CharacterController = () => {
       let speed = get().run ? RUN_SPEED : WALK_SPEED;
 
       if (isClicking.current) {
-        console.log("clicking", mouse.x, mouse.y);
+       
         if (Math.abs(mouse.x) > 0.1) {
           movement.x = -mouse.x;
         }
@@ -96,7 +96,7 @@ export const CharacterController = () => {
           speed = RUN_SPEED;
         }
       }
-      console.log(get())
+     
       if (get().left) {
         movement.x = 1;
       }
@@ -104,8 +104,9 @@ export const CharacterController = () => {
         movement.x = -1;
       }
       if (get().jump) {
-        
-        rb.current.applyImpulse({ x: vel.x, y: 5, z: vel.z }, true);
+
+          rb.current.applyImpulse({ x: 0, y: 50, z: 0 }, true);
+     
       }
       
       
@@ -118,27 +119,28 @@ export const CharacterController = () => {
         vel.x =
           Math.sin(rotationTarget.current + characterRotationTarget.current) *
           speed;
-          console.log(vel)
+         
         vel.z =
           Math.cos(rotationTarget.current + characterRotationTarget.current) *
           speed;
-        // if (speed === RUN_SPEED) {
-          // setAnimation("run");
+        if (speed === RUN_SPEED) {
+          setAnimation("run");
           
         } else {
-          // setAnimation("walk");
+          setAnimation("walk");
           
-        // }
+        }
       } 
-      // else {
-      //   setAnimation("idle");
-      // }
+      else {
+        setAnimation("idle");
+      }
       character.current.rotation.y = lerpAngle(
         character.current.rotation.y,
         characterRotationTarget.current,
         0.1
       );
       rb.current.setLinvel(vel, true);
+
     
     }
 
@@ -163,19 +165,21 @@ export const CharacterController = () => {
   return (
     <RigidBody 
     type="dynamic"
-     colliders="hull" 
+     colliders={"hull"}
     lockRotations
-    linearDamping={0.5}
+    linearDamping={2}
     mass={50}
+    ccd={true}
      ref={rb}>
       <group ref={container}>
-        <group ref={cameraTarget} position-z={1.5} />
-        <group ref={cameraPosition} position-y={3} position-z={-8} />
-        <group ref={character} position-y={1} position-x={1}>
-          <Character scale={1}  animation={animation} />
+        <group ref={cameraTarget} position-z={15} />
+        <group ref={cameraPosition} position-y={6} position-z={-5} />
+        <group ref={character} position-y={3} position-x={1}>
+          <Character scale={1.4}  animation={animation} />
+          <CapsuleCollider args={[0.5, 0.35]}  position={[0,0.6,0]}/>
         </group>
       </group>
-      {/* <CapsuleCollider args={[0.3, 0.2]} /> */}
+     
     </RigidBody>
   );
 }; 
