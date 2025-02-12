@@ -4,7 +4,7 @@ import { Physics } from "@react-three/rapier";
 // import {DebugEnv} from "@react-three/rapier";
 import { useRef } from "react";
 import { CharacterController } from "./CharacterController";
-import { Map } from "./Map";
+import { GameMap } from "./GameMap";
 import { RigidBody } from "@react-three/rapier";
 
 
@@ -37,7 +37,7 @@ export const Experience = () => {
       <Physics gravity={[0,-9.8,0]} timeStep={1/350}  >
       {/* <Debug /> */}
  
-          <Map model={"/world/city2.glb"}></Map>
+          <GameMap model={"/world/unlinkcity.glb"}></GameMap>
      
         <CharacterController />
       </Physics>

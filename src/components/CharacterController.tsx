@@ -141,7 +141,7 @@ export const CharacterController = () => {
         0.1
       );
       rb.current.setLinvel(vel, true);
-      console.log(animation)
+      // console.log(animation)
     
     }
 
